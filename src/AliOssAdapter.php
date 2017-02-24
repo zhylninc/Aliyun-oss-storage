@@ -126,12 +126,12 @@ class AliOssAdapter extends AbstractAdapter
         $object = $this->applyPathPrefix($path);
         $options = $this->getOptions($this->options, $config);
 
-        if (! isset($options[OssClient::OSS_LENGTH])) {
-            $options[OssClient::OSS_LENGTH] = Util::contentSize($contents);
-        }
-        if (! isset($options[OssClient::OSS_CONTENT_TYPE])) {
-            $options[OssClient::OSS_CONTENT_TYPE] = Util::guessMimeType($path, $contents);
-        }
+//        if (! isset($options[OssClient::OSS_LENGTH])) {
+//            $options[OssClient::OSS_LENGTH] = Util::contentSize($contents);
+//        }
+//        if (! isset($options[OssClient::OSS_CONTENT_TYPE])) {
+//            $options[OssClient::OSS_CONTENT_TYPE] = Util::guessMimeType($path, $contents);
+//        }
         try {
             $this->client->putObject($this->bucket, $object, $contents, $options);
         } catch (OssException $e) {
@@ -164,9 +164,9 @@ class AliOssAdapter extends AbstractAdapter
 
         $options[OssClient::OSS_CHECK_MD5] = true;
 
-        if (! isset($options[OssClient::OSS_CONTENT_TYPE])) {
-            $options[OssClient::OSS_CONTENT_TYPE] = Util::guessMimeType($path, '');
-        }
+ //       if (! isset($options[OssClient::OSS_CONTENT_TYPE])) {
+ //           $options[OssClient::OSS_CONTENT_TYPE] = Util::guessMimeType($path, '');
+ //       }
         try {
             $this->client->uploadFile($this->bucket, $object, $filePath, $options);
         } catch (OssException $e) {
